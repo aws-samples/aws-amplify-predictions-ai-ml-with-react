@@ -23,6 +23,29 @@ body {
       justify-content:center;
       align-items:center;
       padding:2%;
+      .result-container {
+        margin:0 2%;
+        padding:0;
+        position:relative;
+        height:113px;
+        width:100%;
+        .words {
+          position:absolute;
+          z-index:1;
+          color:rgba(0,0,0,0.87);
+          padding: 18.5px 14px;
+        }
+        .text-box {
+          margin:0;
+          position:absolute;
+          top:0;
+          bottom:0;
+          left:0;
+          right:0;
+          height:113px;
+          width:100%;
+        }
+      }
       .text-box {
         margin:0 2%;
         .MuiInputBase-root{

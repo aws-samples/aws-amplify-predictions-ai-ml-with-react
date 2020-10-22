@@ -9,52 +9,62 @@ import Negative from '@material-ui/icons/SentimentDissatisfiedTwoTone';
 import Positive from '@material-ui/icons/SentimentSatisfiedAltTwoTone';
 import Neutral from '@material-ui/icons/FaceTwoTone';
 
+import PartsOfSpeech from './assets/json/parts-of-speech.json';
+
 Amplify.configure(awsconfig);
 Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
 function App() {
-  const [interpret, getInterpret] = useState('');
+  const [interpret, getInterpret] = useState([]);
   const [text,getText] = useState('');
   const [mood,getMood] = useState('none');
 
-  function parseText(syntax) {
+  function parseText() {
 
+    return interpret.map((word: {text:string, syntax:keyof typeof PartsOfSpeech}, ind:number) => {
+      const pos: string = PartsOfSpeech[word.syntax];
+      return (<Tooltip key={ind} title={pos}>
+        <span>{word.text} </span>
+      </Tooltip>)
+    });
   }
 
-  function parseInterpretation(interpretation) {
-    if (typeof interpretation.textInterpretation !== 'object' || !interpretation.textInterpretation) return;
-    const {sentiment, keyPhrases, syntax, textEntities} = interpretation.textInterpretation;
+  function parseInterpretation(interpretation:any) {
+    if (typeof interpretation !== 'object' || !interpretation) return;
+    const {sentiment, language, keyPhrases, syntax, textEntities} = interpretation;
     const newMood = sentiment.predominant;
     getMood(newMood);
-    console.log(newMood);
-    getInterpret(JSON.stringify(syntax, null, 2));
+    getInterpret(syntax);
   }
 
   function getInterpretation() {
-    Predictions.interpret({
+    const txt: any = {
       text: {
         source: {
           text: text,
         },
-        type: "ALL"
+        type: 'ALL'
       }
-    }).then(result => {
-      parseInterpretation(result);
-      console.log(result);
+    }
+
+    Predictions.interpret(txt).then(result => {
+      const { textInterpretation } = result;
+      parseInterpretation(textInterpretation);
+      console.log(textInterpretation);
     })
       .catch(err => { throw err })
   }
 
-  function setText(e) {
+  function setText(e: any) {
     getText(e.target.value);
   }
 
   function reset() {
-    getInterpret('');
+    getInterpret([]);
     getMood('none');
   }
 
-  function checkForEnter(e) {
+  function checkForEnter(e: any) {
     if (!text.length) reset();
     if (e.key === 'Enter' && text.length) {
       getInterpretation();
@@ -97,18 +107,21 @@ function App() {
             fullWidth
             autoFocus
           />
-        <TextField
-            id="result-box"
-            className="text-box"
-            placeholder="Result Will Show Here"
-            value={interpret}
-            margin="normal"
-            variant="outlined"
-            rows={4}
-            multiline
-            fullWidth
-            inputProps={{readOnly:true}}
-          />
+        <div className="result-container">    
+          <div className="words">{parseText()}</div>    
+          <TextField
+              id="result-box"
+              className="text-box"
+              placeholder="Result Will Show Here"
+              value={interpret.length ? ' ' : ''}
+              margin="normal"
+              variant="outlined"
+              rows={4}
+              multiline
+              fullWidth
+              inputProps={{readOnly:true}}
+            />
+        </div>
       </div>
       <Button 
         className="submit"
