@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  overflow:hidden;
+  font-family: 'Roboto', 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  .App {
+    text-align: center;
+    background-color: #282c34;
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding-top:10px;
+    .input-container {
+      color:#fff;
+      width:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:2%;
+      .text-box {
+        margin:0 2%;
+        .MuiInputBase-root{
+          background-color:#fff;
+        }
+        .MuiFormHelperText-root {
+          color:#fff;
+        }
+      }
+    }
+  }
+
+  .sentiment {
+    .MuiSvgIcon-root {
+      color: #282c34;
+      background-color: #FCF787;
+      border-radius:50%;
+      font-size:200px;
+    }
+  }
+}
+
+.invisible {
+  opacity:0;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
