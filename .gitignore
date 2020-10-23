@@ -32,6 +32,7 @@ amplify/.config/local-*
 amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
+amplify/backend/auth
 build/
 dist/
 node_modules/
@@ -41,3 +42,6 @@ amplifyconfiguration.json
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
+
+parameters.json
+amplify/team-provider-info.json
