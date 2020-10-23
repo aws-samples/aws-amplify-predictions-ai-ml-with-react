@@ -15,16 +15,22 @@ Amplify.configure(awsconfig);
 Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
 function App() {
-  const [interpret, getInterpret] = useState([]);
+  const [words, getWords] = useState([]);
   const [text,getText] = useState('');
   const [mood,getMood] = useState('none');
 
   function parseText() {
 
-    return interpret.map((word: {text:string, syntax:keyof typeof PartsOfSpeech}, ind:number) => {
+    return words.map((word: {text:string, syntax:keyof typeof PartsOfSpeech}, ind:number) => {
       const pos: string = PartsOfSpeech[word.syntax];
-      return (<Tooltip key={ind} title={pos}>
-        <span>{word.text} </span>
+
+      return (<Tooltip 
+        key={ind} 
+        title={pos}
+        placement="top"
+        interactive
+        arrow
+        ><div className="word-container"><span>{word.text} </span> </div>
       </Tooltip>)
     });
   }
@@ -34,7 +40,7 @@ function App() {
     const {sentiment, language, keyPhrases, syntax, textEntities} = interpretation;
     const newMood = sentiment.predominant;
     getMood(newMood);
-    getInterpret(syntax);
+    getWords(syntax);
   }
 
   function getInterpretation() {
@@ -60,7 +66,7 @@ function App() {
   }
 
   function reset() {
-    getInterpret([]);
+    getWords([]);
     getMood('none');
   }
 
@@ -113,7 +119,7 @@ function App() {
               id="result-box"
               className="text-box"
               placeholder="Result Will Show Here"
-              value={interpret.length ? ' ' : ''}
+              value={words.length ? ' ' : ''}
               margin="normal"
               variant="outlined"
               rows={4}

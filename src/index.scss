@@ -30,10 +30,24 @@ body {
         height:113px;
         width:100%;
         .words {
+          display:flex;
           position:absolute;
           z-index:1;
           color:rgba(0,0,0,0.87);
           padding: 18.5px 14px;
+          .word-container {
+            display:flex;
+            margin-right:4px;
+            span {
+              cursor: pointer;
+              &:hover {
+                color: maroon;
+                font-weight:700;
+                position:relative;
+                top:-1px;
+              }
+            }
+          }
         }
         .text-box {
           margin:0;
@@ -74,4 +88,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.MuiTooltip-tooltip {
+  color: #282c34!important;
+  background-color: #FCF787!important;
+  position:relative;
+  top:8px;
+}
+.MuiTooltip-arrow {
+  color: #FCF787!important;
 }
