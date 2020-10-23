@@ -23,45 +23,90 @@ body {
       justify-content:center;
       align-items:center;
       padding:2%;
+      .text-container {
+        margin:0 2%;
+        padding:0;
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        .text-wrapper {
+          height:113px;
+          width:100%;
+        }
+          .submit {
+            margin-top:25px;
+            width:200px;
+          }
+      }
       .result-container {
         margin:0 2%;
         padding:0;
-        position:relative;
-        height:113px;
         width:100%;
-        .words {
-          display:flex;
-          position:absolute;
-          z-index:1;
-          color:rgba(0,0,0,0.87);
-          padding: 18.5px 14px;
-          .word-container {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        .result-box {
+          margin:0;
+          padding:0;
+          height:113px;
+          position:relative;
+          width:100%;
+          //margin-top:37px;
+          .words {
             display:flex;
-            margin-right:4px;
-            span {
-              cursor: pointer;
-              &:hover {
-                color: maroon;
-                font-weight:700;
-                position:relative;
-                top:-1px;
+            position:absolute;
+            z-index:1;
+            color:rgba(0,0,0,0.87);
+            padding: 18.5px 14px;
+            .word-container {
+              display:flex;
+              margin-right:4px;
+              span {
+                cursor: pointer;
+                &:hover {
+                  color: maroon;
+                  font-weight:700;
+                  position:relative;
+                  top:-1px;
+                }
               }
             }
           }
         }
-        .text-box {
-          margin:0;
-          position:absolute;
-          top:0;
-          bottom:0;
-          left:0;
-          right:0;
-          height:113px;
-          width:100%;
+          .text-box {
+            margin:0;
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            height:113px;
+            width:100%;
+          }
+          .MuiAutocomplete-root {
+            background-color:#fff;
+            margin-top:25px;
+            width:200px;
+            padding:5px 10px 0 10px;
+            border-radius:8px;
+          }
+          .MuiInput-underline {
+            &:before {
+                border-bottom:0;
+            }
+            &:after {
+                border-bottom:0;
+            }
+            &:hover:not(.Mui-disabled) {
+                &:before {
+                    border-bottom:0;
+                }
+            }
+          }
         }
-      }
       .text-box {
-        margin:0 2%;
+        margin:0;
         .MuiInputBase-root{
           background-color:#fff;
         }
@@ -98,4 +143,12 @@ code {
 }
 .MuiTooltip-arrow {
   color: #FCF787!important;
+}
+
+.language-popper {
+  .MuiAutocomplete-paper {
+    width:220px;
+    position:relative;
+    left:-10px;
+  }
 }

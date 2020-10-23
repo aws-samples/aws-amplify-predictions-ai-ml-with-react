@@ -3,13 +3,16 @@ import { AmazonAIPredictionsProvider } from '@aws-amplify/predictions';
 import awsconfig from './aws-exports';
 import React, { useState } from 'react';
 import { TextField, Button, Tooltip } from '@material-ui/core';
-
+import { Autocomplete } from '@material-ui/lab';
 import AccountCircleIcon from '@material-ui/icons/AccountCircleTwoTone';
 import Negative from '@material-ui/icons/SentimentDissatisfiedTwoTone';
 import Positive from '@material-ui/icons/SentimentSatisfiedAltTwoTone';
 import Neutral from '@material-ui/icons/FaceTwoTone';
 
 import PartsOfSpeech from './assets/json/parts-of-speech.json';
+import Languages from './assets/json/languages.json';
+
+const languageValues: any[] = Object.keys(Languages);
 
 Amplify.configure(awsconfig);
 Amplify.addPluggable(new AmazonAIPredictionsProvider());
@@ -18,6 +21,9 @@ function App() {
   const [words, getWords] = useState([]);
   const [text,getText] = useState('');
   const [mood,getMood] = useState('none');
+
+  const [languageInput,getLanguageInput] = useState('');
+  const [languageValue, getLanguageValue] = useState('');
 
   function parseText() {
 
@@ -41,6 +47,9 @@ function App() {
   function parseInterpretation(interpretation:any) {
     if (typeof interpretation !== 'object' || !interpretation) return;
     const {sentiment, language, syntax} = interpretation;
+    if (!languageValue) {
+      getLanguageValue(language);
+    }
     const newMood = sentiment.predominant;
     getMood(newMood);
     getWords(syntax);
@@ -62,10 +71,6 @@ function App() {
       console.log(textInterpretation);
     })
       .catch(err => { throw err })
-  }
-
-  function setText(e: any) {
-    getText(e.target.value);
   }
 
   function reset() {
@@ -96,49 +101,96 @@ function App() {
     return res;
   }
 
+
+  function setText(e: any) {
+    getText(e.target.value);
+  }
+
+  function onChange(e: any, val: any) {
+
+    getLanguageValue(val);
+  }
+
+  function onInputChange(e: any, val: any) {
+    console.log(val);
+    getLanguageInput(val);
+  }
+
+  function onAutocompleteKeyUp() {
+
+  }
+
   return (
     <div className="App">
       <div className="sentiment">
         {displayMood()}
       </div>
-      <div className="input-container">        
-        <TextField
-            id="text-box"
-            className="text-box"
-            placeholder="Input Text Here"
-            margin="normal"
-            variant="outlined"
-            value={text}
-            onChange={setText}
-            onKeyUp={checkForEnter}
-            rows={4}
-            multiline
-            fullWidth
-            autoFocus
-          />
+      <div className="input-container">  
+        <div className="text-container">
+          <div className="text-wrapper">
+            <TextField
+                id="text-box"
+                className="text-box"
+                placeholder="Input Text Here"
+                margin="normal"
+                variant="outlined"
+                value={text}
+                onChange={setText}
+                onKeyUp={checkForEnter}
+                rows={4}
+                multiline
+                fullWidth
+                autoFocus
+              />
+          </div>
+        <Button 
+          className="submit"
+          variant="contained" 
+          color="primary"
+          onClick={getInterpretation}>
+          Interpret
+        </Button>
+        </div>
         <div className="result-container">    
-          <div className="words">{parseText()}</div>    
-          <TextField
-              id="result-box"
-              className="text-box"
-              placeholder="Result Will Show Here"
-              value={words.length ? ' ' : ''}
-              margin="normal"
-              variant="outlined"
-              rows={4}
-              multiline
-              fullWidth
-              inputProps={{readOnly:true}}
+          <div className="result-box">
+            <div className="words">{parseText()}</div>    
+            <TextField
+                id="result-box"
+                className="text-box"
+                placeholder="Results Will Show Here"
+                value={words.length ? ' ' : ''}
+                margin="normal"
+                variant="outlined"
+                rows={4}
+                multiline
+                fullWidth
+                inputProps={{readOnly:true}}
             />
+          </div>
+          <Autocomplete
+            className="language-box"
+            value={languageValue as keyof typeof Languages}
+            options={languageValues}
+            inputValue={languageInput}
+            onInputChange={onInputChange}
+            onChange={onChange}
+            autoComplete
+            autoHighlight
+            clearOnBlur
+            fullWidth
+            classes={{popper:'language-popper'}}
+            getOptionLabel={(option: keyof typeof Languages) => Languages[option]}
+            renderInput={(params:any) => 
+            <TextField
+                {...params}
+                className="language-text"
+                onKeyUp={onAutocompleteKeyUp}
+                placeholder="Select a Language"
+            />
+            }
+        />
         </div>
       </div>
-      <Button 
-        className="submit"
-        variant="contained" 
-        color="primary"
-        onClick={getInterpretation}>
-        Interpret
-      </Button>
     </div>
   );
 }
