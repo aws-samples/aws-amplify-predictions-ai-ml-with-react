@@ -44,9 +44,9 @@ Fill out the form with the appropriate info for your app:
 
 ? Distribution Directory Path: (build) 
 
-? Build Command:  (npm run build) 
+? Build Command:  (npm run-script build) 
 
-? Start Command: (npm start) 
+? Start Command: (npm run-script start) 
 Using default provider  awscloudformation
 
 ? Do you want to use an AWS profile? (Y/n) 
@@ -78,7 +78,7 @@ amplify add auth
 
 ## Add AI/ML Predictions
 ```bash
-amplify add predictions
+amplify add predictions 
 
 ? Please select from one of the categories below 
   Identify #Identify text, labels, or entities (like celebrities) embedded within an image
@@ -105,12 +105,73 @@ amplify add predictions
   Auth users only 
 ❯ Auth and Guest users 
 ```
+Now let's go back and add in our translate library
 
-## Add Hosting
-Once your app is initialized, you can push updates to amplify services using the `amplify push` command, but before we can access it on the web, we have to add hosting.  
+```bash
+amplify add predictions
+
+? Please select from one of the categories below 
+  Identify 
+❯ Convert 
+  Interpret 
+  Infer 
+  Learn More 
+
+? What would you like to convert? (Use arrow keys)
+❯ Translate text into a different language 
+  Generate speech audio from text 
+  Transcribe text from audio 
+
+? Provide a friendly name for your resource (mytranslator)
+
+# For source and target language you're just choosing defaults, these can be overridden
+? What is the source language? 
+  Czech 
+  Danish 
+  Dutch 
+❯ English 
+  Finnish 
+  French 
+  German 
+(Move up and down to reveal more choices)
+
+? What is the target language? 
+  Portuguese 
+  Romanian 
+  Russian 
+❯ Spanish 
+  Swedish 
+  Thai 
+  Turkish 
+(Move up and down to reveal more choices)
+
+? Who should have access? (Use arrow keys)
+  Auth users only 
+❯ Auth and Guest users 
+
+Successfully added resource myinterpreter locally
+```
+Once your app is initialized, you can push updates to amplify services using the `amplify push` command.
 
 *Note: `amplify push` will only update changes to amplify services, to update app code use `amplify publish` or Automatic Git deployments.*
 
+```bash
+amplify push
+✔ Successfully pulled backend environment dev from the cloud.
+
+Current Environment: dev
+
+| Category    | Resource name             | Operation | Provider plugin   |
+| ----------- | ------------------------- | --------- | ----------------- |
+| Auth        | myApp                     | Create    | awscloudformation |
+| Predictions | myinterpreter             | Create    | awscloudformation |
+| Predictions | mytranslator              | Create    | awscloudformation |
+? Are you sure you want to continue? Yes
+```
+
+Now the services are ready for use, but before we can access our app on the web, we have to add hosting.  
+
+## Add Hosting
 ```bash
 amplify add hosting
 
@@ -122,8 +183,23 @@ amplify add hosting
   Continuous deployment (Git-based deployments) 
 ❯ Manual deployment 
   Learn more
+
+You can now publish your app using the following command:
+
+Command: amplify publish
 ```
+
+*Note: Make sure you add all amplify files that have sensitive info in them to your gitignore before pushing to a public repo. To ensure security you can add the entire `amplify` directory to gitignore and then use `amplify pull` to get the necessary backend files before updating.*
+
 Once you get the confirmation that hosting was added, you can publish to the web using `amplify publish`. Once the app is deployed you'll be shown the randomly assigned URL where you can find your app and confirm that the entire process worked.  
 You can find instructions on how to use a custom domain with your app [here](https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html).  
 
-*Note: Make sure you add all amplify files that have sensitive info in them to your gitignore before pushing to a public repo. To ensure security you can add the entire `amplify` directory to gitignore and then use `amplify pull` to get the necessary backend files before updating.*
+## Sample App - Language Translating and Syntax
+
+Input text into the box on the left in the app and the AI will assess it for the following properties:
+
+- ***Translation*** - If you choose a target language the text will be translated into that language in the results box. If the language is supported by Amazon Comprehend, it will move on to interpret the text for:
+
+- ***Sentiment*** - If the text in the box is positive, the icon at the top will become a smiling face, if it's negative it will become a frowning face, and if it's neither it will become a neutral face.
+
+- ***Syntax*** - Hover over a word in the result box to see what part of speech it is in the context of the text as a whole.

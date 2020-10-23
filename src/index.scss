@@ -34,10 +34,6 @@ body {
           height:113px;
           width:100%;
         }
-          .submit {
-            margin-top:25px;
-            width:200px;
-          }
       }
       .result-container {
         margin:0 2%;
@@ -52,7 +48,6 @@ body {
           height:113px;
           position:relative;
           width:100%;
-          //margin-top:37px;
           .words {
             display:flex;
             position:absolute;
@@ -84,26 +79,6 @@ body {
             height:113px;
             width:100%;
           }
-          .MuiAutocomplete-root {
-            background-color:#fff;
-            margin-top:25px;
-            width:200px;
-            padding:5px 10px 0 10px;
-            border-radius:8px;
-          }
-          .MuiInput-underline {
-            &:before {
-                border-bottom:0;
-            }
-            &:after {
-                border-bottom:0;
-            }
-            &:hover:not(.Mui-disabled) {
-                &:before {
-                    border-bottom:0;
-                }
-            }
-          }
         }
       .text-box {
         margin:0;
@@ -117,6 +92,27 @@ body {
     }
   }
 
+  .MuiAutocomplete-root {
+    background-color:#fff;
+    margin-top:25px;
+    width:250px;
+    padding:5px 10px 0 10px;
+    border-radius:8px;
+  }
+  .MuiInput-underline {
+    &:before {
+        border-bottom:0;
+    }
+    &:after {
+        border-bottom:0;
+    }
+    &:hover:not(.Mui-disabled) {
+        &:before {
+            border-bottom:0;
+        }
+    }
+  }
+
   .sentiment {
     .MuiSvgIcon-root {
       color: #282c34;
@@ -125,6 +121,11 @@ body {
       font-size:200px;
     }
   }
+}
+
+.submit {
+  margin-top:25px;
+  width:200px;
 }
 
 .invisible {

@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"awsamplifyprediction2d5d735f": {
+		"myapp598e5f14": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
@@ -12,6 +12,11 @@
 			"providerPlugin": "awscloudformation",
 			"service": "Comprehend",
 			"interpretType": "interpretText"
+		},
+		"mytranslator": {
+			"providerPlugin": "awscloudformation",
+			"service": "Translate",
+			"convertType": "translateText"
 		}
 	}
 }
