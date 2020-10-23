@@ -30,14 +30,17 @@ function App() {
         placement="top"
         interactive
         arrow
-        ><div className="word-container"><span>{word.text} </span> </div>
+      >
+        <div className="word-container">
+          <span>{word.text}</span> 
+        </div>
       </Tooltip>)
     });
   }
 
   function parseInterpretation(interpretation:any) {
     if (typeof interpretation !== 'object' || !interpretation) return;
-    const {sentiment, language, keyPhrases, syntax, textEntities} = interpretation;
+    const {sentiment, language, syntax} = interpretation;
     const newMood = sentiment.predominant;
     getMood(newMood);
     getWords(syntax);
