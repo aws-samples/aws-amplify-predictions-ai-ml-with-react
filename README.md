@@ -1,11 +1,28 @@
 # AWS Amplify Predictions Library Sample 
 
-**Language Translation and Syntax Tool Made With React Using AWS Amplify Predictions Library to Integrate Artificial Intelligence and Machine Learning**
+**Language Translation and Syntax Tool Made With React Using AWS Amplify Predictions Library to Integrate Artificial Intelligence and Machine Learning**  
+
+
+1. [Install CLI](cli)  
+2. [Initialize App](init)
+3. [Auth](auth)
+4. [Predictions Library](predictions)
+  - [Syntax](syntax)
+  - [Translation](translation)
+5. [Hosting](hosting)
+6. [Sample App](app)
+7. [Security](security)
+8. [License](license)  
+
+
+<a name="cli"></a>
 
 ### Install Amplify CLI
 ```bash
 npm install -g @aws-amplify/cli
 ```
+
+<a name="init"></a>
 
 ### Initialize Amplify App
 ```bash
@@ -54,6 +71,8 @@ Using default provider  awscloudformation
 After choosing how you want to authenticate with AWS, Amplify will create all the necessary resources to store your app in the cloud.  
 *Note: See the `#amplify` section of `.gitignore` to see the paths to files with credential info that you can expect to see in the amplify directory but aren't present in this repo.*   Now it's time to add our services. For a full list of services you can add see the [Amplify docs](https://docs.amplify.aws/), but for our purposes we're just going to add a few.
 
+<a name="auth"></a>
+
 ## Add Auth
 ```bash
 amplify add auth
@@ -76,7 +95,13 @@ amplify add auth
   Yes, I want to make some additional changes. 
 ```
 
+<a name="predictions"></a>
+
 ## Add AI/ML Predictions
+
+<a name="syntax"></a>
+
+### Syntax
 ```bash
 amplify add predictions 
 
@@ -105,6 +130,9 @@ amplify add predictions
   Auth users only 
 ❯ Auth and Guest users 
 ```
+<a name="translation"></a>
+
+### Translation
 Now let's go back and add in our translate library
 
 ```bash
@@ -171,6 +199,8 @@ Current Environment: dev
 
 Now the services are ready for use, but before we can access our app on the web, we have to add hosting.  
 
+<a name="hosting"></a>
+
 ## Add Hosting
 ```bash
 amplify add hosting
@@ -194,13 +224,12 @@ Command: amplify publish
 Once you get the confirmation that hosting was added, you can publish to the web using `amplify publish`. Once the app is deployed you'll be shown the randomly assigned URL where you can find your app and confirm that the entire process worked.  
 You can find instructions on how to use a custom domain with your app [here](https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html).  
 
-## Sample App - Language Translating and Syntax
+<a name="app"></a>
 
-To view locally:
-```bash
-cd <local path>
-npm start
-```
+## Sample App - Language Translation and Syntax
+
+Run app locally using `npm start` then navigating in browser to `localhost:3000`
+
 Input text into the box on the left in the app and the AI will assess it for the following properties:
 
 - ***Translation*** - If you choose a target language the text will be translated into that language in the results box. If the language is supported by Amazon Comprehend, it will move on to interpret the text for:
@@ -209,9 +238,13 @@ Input text into the box on the left in the app and the AI will assess it for the
 
 - ***Syntax*** - Hover over a word in the result box to see what part of speech it is in the context of the text as a whole.
 
+<a name="security"></a>
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+<a name="license"></a>
 
 ## License
 
