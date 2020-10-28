@@ -25,6 +25,7 @@ yarn-error.log*
 build/
 dist/
 node_modules/
+Config
 
 #amplify
 amplify/\#current-cloud-backend

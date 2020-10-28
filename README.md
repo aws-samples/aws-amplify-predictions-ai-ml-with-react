@@ -1,6 +1,6 @@
-# Language Translation And Syntax Tool Using AWS Amplify AI/ML With React 
+# Language Translation And Syntax Tool Using AWS Amplify Predictions AI/ML With React 
 
-**Language Translation and Syntax Tool Made With React Using AWS Amplify to Integrate Artificial Intelligence and Machine Learning**
+**Language Translation and Syntax Tool Made With React Using AWS Amplify Predictions Library to Integrate Artificial Intelligence and Machine Learning**
 
 ### Install Amplify CLI
 ```bash
