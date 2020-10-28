@@ -1,4 +1,4 @@
-# Language Translation And Syntax Tool Using AWS Amplify Predictions AI/ML With React 
+# AWS Amplify Predictions Library Sample 
 
 **Language Translation and Syntax Tool Made With React Using AWS Amplify Predictions Library to Integrate Artificial Intelligence and Machine Learning**
 
