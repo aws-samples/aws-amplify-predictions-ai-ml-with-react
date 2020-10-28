@@ -196,6 +196,11 @@ You can find instructions on how to use a custom domain with your app [here](htt
 
 ## Sample App - Language Translating and Syntax
 
+To view locally:
+```bash
+cd <local path>
+npm start
+```
 Input text into the box on the left in the app and the AI will assess it for the following properties:
 
 - ***Translation*** - If you choose a target language the text will be translated into that language in the results box. If the language is supported by Amazon Comprehend, it will move on to interpret the text for:
