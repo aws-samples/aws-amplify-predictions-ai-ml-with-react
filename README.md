@@ -1,35 +1,35 @@
 # AWS Amplify Predictions Library Sample 
 
-**Language Translation and Syntax Tool Made With React Using AWS Amplify Predictions Library to Integrate Artificial Intelligence and Machine Learning**  
+***Language Translation and Syntax Tool Made With React Using AWS Amplify Predictions Library to Integrate Artificial Intelligence and Machine Learning***  
 
 
-1. [Install CLI](cli)  
-2. [Initialize App](init)
-3. [Auth](auth)
-4. [Predictions Library](predictions)
-  - [Syntax](syntax)
-  - [Translation](translation)
-5. [Hosting](hosting)
-6. [Sample App](app)
-7. [Security](security)
-8. [License](license)  
+1. [Install CLI](#cli)
+2. [Initialize App](#init)
+3. [Auth](#auth)
+4. [Predictions Library](#predictions)  
+  • [Syntax](#syntax)  
+  • [Translation](#translation)
+5. [Hosting](#hosting)
+6. [Sample App](#app)
+7. [Security](#security)
+8. [License](#license)
 
 
 <a name="cli"></a>
 
 ### Install Amplify CLI
-```bash
+```
 npm install -g @aws-amplify/cli
 ```
 
 <a name="init"></a>
 
 ### Initialize Amplify App
-```bash
+```
 amplify init
 ```
 Fill out the form with the appropriate info for your app:
-``` bash
+```
 ? Enter a name for the project (myApp)  
 
 ? Enter a name for the environment (dev)   
@@ -74,7 +74,7 @@ After choosing how you want to authenticate with AWS, Amplify will create all th
 <a name="auth"></a>
 
 ## Add Auth
-```bash
+```
 amplify add auth
 
 ❯ Default configuration 
@@ -102,7 +102,7 @@ amplify add auth
 <a name="syntax"></a>
 
 ### Syntax
-```bash
+```
 amplify add predictions 
 
 ? Please select from one of the categories below 
@@ -115,7 +115,7 @@ amplify add predictions
 ? What would you like to interpret? (Use arrow keys)
 ❯ Interpret Text 
 
-#names must be alphanumeric
+# names must be alphanumeric
 ? Provide a friendly name for your resource (myinterpreter)
 
 ? What kind of interpretation would you like? 
@@ -135,7 +135,7 @@ amplify add predictions
 ### Translation
 Now let's go back and add in our translate library
 
-```bash
+```
 amplify add predictions
 
 ? Please select from one of the categories below 
@@ -202,7 +202,7 @@ Now the services are ready for use, but before we can access our app on the web,
 <a name="hosting"></a>
 
 ## Add Hosting
-```bash
+```
 amplify add hosting
 
 ? Select the plugin module to execute (Use arrow keys)

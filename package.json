@@ -1,5 +1,6 @@
 {
   "name": "aws-amplify-predictions-ai-ml-with-react",
+  "description": "Language Translation and Syntax Tool Made With React Using AWS Amplify Predictions Library to Integrate Artificial Intelligence and Machine Learning",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
