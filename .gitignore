@@ -26,6 +26,7 @@ build/
 dist/
 node_modules/
 Config
+npmlist.json
 
 #amplify
 amplify/\#current-cloud-backend
