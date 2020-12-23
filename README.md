@@ -176,8 +176,6 @@ amplify add predictions
 ? Who should have access? (Use arrow keys)
   Auth users only 
 ❯ Auth and Guest users 
-
-Successfully added resource myinterpreter locally
 ```
 Once your app is initialized, you can push updates to amplify services using the `amplify push` command.
 
@@ -227,6 +225,7 @@ You can find instructions on how to use a custom domain with your app [here](htt
 <a name="app"></a>
 
 ## Sample App - Language Translation and Syntax
+*Note: The *Amplify* directory in this repo is for reference only and is missing some necessary files for security purposes. To run sample app remove current *amplify* directory and recreate it with the above tutorial*
 
 Run app locally using `npm start` then navigating in browser to `localhost:3000`
 

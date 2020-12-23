@@ -17,6 +17,7 @@
     "@types/react-dom": "^16.9.8",
     "aws-amplify": "^3.3.4",
     "node-sass": "^4.14.1",
+    "npm-force-resolutions": "0.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "3.4.4",
@@ -25,7 +26,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "resolutions": {
+    "node-notifier": "8.0.1"
   },
   "eslintConfig": {
     "extends": "react-app"
